@@ -63,8 +63,6 @@ jobs:
           fetch-tags: true
       
       - name: Bump version and push tag
-        uses: bitshifted/git-auto-semver@v2
+        uses: mathieudutour/github-tag-action@v6.2
         with:
-          create_tag: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -47,11 +47,16 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
 
 ## Versioning
 
-This action uses automatic semantic versioning with major version tag management. Every push to main creates a new version based on commit messages:
+This action uses automatic semantic versioning with major version tag management. Every push to main creates a new version based on commit messages following [Angular Commit Message Conventions](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines):
 
 - **Patch version** (default): `v1.0.1`, `v1.0.2`, etc.
-- **Minor version**: Include `#minor`, `#feature`, or `feat:` in commit message → `v1.1.0`
-- **Major version**: Include `#major`, `#breaking`, or `BREAKING CHANGE:` in commit message → `v2.0.0`
+  - `fix:` - bug fixes
+  - `docs:`, `style:`, `refactor:`, `test:`, `chore:` - non-breaking changes
+- **Minor version**: `v1.1.0`, `v1.2.0`, etc.
+  - `feat:` - new features
+- **Major version**: `v2.0.0`, `v3.0.0`, etc.
+  - `BREAKING CHANGE:` in commit body or footer
+  - `feat!:` or `fix!:` - breaking changes
 
 **Major version tags are automatically updated:**
 - When `v1.2.3` is released, the `v1` tag moves to point to `v1.2.3`
