@@ -45,12 +45,17 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
 
 ## Versioning
 
-This action uses automatic semantic versioning. Every push to main creates a new version:
+This action uses automatic semantic versioning with major version tag management. Every push to main creates a new version based on commit messages:
 
-- Default: patch version (v1.0.1, v1.0.2, etc.)
-- `#minor` or `#feature` in commit message: minor version (v1.1.0)
-- `#major` or `#breaking` in commit message: major version (v2.0.0)
+- **Patch version** (default): `v1.0.1`, `v1.0.2`, etc.
+- **Minor version**: Include `#minor`, `#feature`, or `feat:` in commit message → `v1.1.0`
+- **Major version**: Include `#major`, `#breaking`, or `BREAKING CHANGE:` in commit message → `v2.0.0`
 
-Use specific versions in your workflows:
-- `Imagimaps/action-tofu@v1` (latest v1.x)
-- `Imagimaps/action-tofu@v1.0.1` (specific version)
+**Major version tags are automatically updated:**
+- When `v1.2.3` is released, the `v1` tag moves to point to `v1.2.3`
+- This allows users to reference the latest version in a major series
+
+Use in your workflows:
+- `Imagimaps/action-tofu@v1` (latest v1.x - recommended)
+- `Imagimaps/action-tofu@v1.2.3` (specific version)
+- `Imagimaps/action-tofu@main` (development - not recommended)
