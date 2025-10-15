@@ -8,6 +8,7 @@ tofu() {
 
 # Test 1: Basic init
 echo "Test 1: Basic init"
+export INPUT_MODULE_PATH="."
 export INPUT_BACKEND_CONFIG=""
 export INPUT_INIT_INPUTS=""
 export INPUT_PLAN_INPUTS=""
@@ -40,8 +41,18 @@ source ./run.sh
 # Test 4: Apply enabled
 echo -e "\nTest 4: Apply enabled"
 export INPUT_APPLY="true"
+export INPUT_DESTROY="false"
 export INPUT_PLAN_INPUTS=""
 export GITHUB_OUTPUT="/tmp/test_output4"
+echo "" > $GITHUB_OUTPUT
+
+source ./run.sh
+
+# Test 5: Destroy enabled
+echo -e "\nTest 5: Destroy enabled"
+export INPUT_APPLY="false"
+export INPUT_DESTROY="true"
+export GITHUB_OUTPUT="/tmp/test_output5"
 echo "" > $GITHUB_OUTPUT
 
 source ./run.sh

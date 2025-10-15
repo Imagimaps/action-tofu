@@ -21,6 +21,10 @@ inputs:
     description: 'Whether to apply the plan'
     required: false
     default: 'false'
+  destroy:
+    description: 'Whether to destroy infrastructure'
+    required: false
+    default: 'false'
   upload_plan:
     description: 'Upload plan file to GitHub artifacts'
     required: false
@@ -47,4 +51,5 @@ runs:
         INPUT_INIT_INPUTS: ${{ inputs.init_inputs }}
         INPUT_PLAN_INPUTS: ${{ inputs.plan_inputs }}
         INPUT_APPLY: ${{ inputs.apply }}
+        INPUT_DESTROY: ${{ inputs.destroy }}
         INPUT_UPLOAD_PLAN: ${{ inputs.upload_plan }}

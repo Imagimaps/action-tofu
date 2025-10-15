@@ -44,4 +44,9 @@ if [ "$INPUT_APPLY" = "true" ]; then
   tofu apply tfplan
 fi
 
+# Destroy if requested
+if [ "$INPUT_DESTROY" = "true" ]; then
+  tofu destroy -auto-approve
+fi
+
 echo "plan_file=tfplan" >> $GITHUB_OUTPUT

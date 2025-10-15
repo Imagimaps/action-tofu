@@ -30,6 +30,7 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
 - `init_inputs`: Init inputs as multiline key=value pairs  
 - `plan_inputs`: Plan inputs as multiline key=value pairs
 - `apply`: Whether to apply the plan (default: false)
+- `destroy`: Whether to destroy infrastructure (default: false)
 - `upload_plan`: Upload plan file to GitHub artifacts (default: true)
 
 ## Outputs
