@@ -17,7 +17,8 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
     init_vars: |
       upgrade=true
     plan_vars: |
-      var-file=prod.tfvars
+      environment=prod
+      region=us-east-1
     apply: false
     upload_plan: true
 ```
@@ -27,7 +28,9 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
 - `tofu_version`: OpenTofu version to use (default: 'latest')
 - `module_path`: Path to the OpenTofu module (required)
 - `backend_config`: Backend configuration as multiline key=value pairs
+- `init_var_files`: Init variable files as multiline paths
 - `init_vars`: Init variables as multiline key=value pairs  
+- `plan_var_files`: Plan variable files as multiline paths
 - `plan_vars`: Plan variables as multiline key=value pairs
 - `apply`: Whether to apply the plan (default: false)
 - `destroy`: Whether to destroy infrastructure (default: false)

@@ -10,7 +10,9 @@ tofu() {
 echo "Test 1: Basic init"
 export INPUT_MODULE_PATH="."
 export INPUT_BACKEND_CONFIG=""
+export INPUT_INIT_VAR_FILES=""
 export INPUT_INIT_VARS=""
+export INPUT_PLAN_VAR_FILES=""
 export INPUT_PLAN_VARS=""
 export INPUT_APPLY="false"
 export INPUT_DESTROY="false"
@@ -33,8 +35,7 @@ source ./run.sh
 # Test 3: Plan with inputs
 echo -e "\nTest 3: Plan with inputs"
 export INPUT_BACKEND_CONFIG=""
-export INPUT_PLAN_VARS="var-file=test.tfvars
-var=environment=prod"
+export INPUT_PLAN_VARS="environment=prod"
 export GITHUB_OUTPUT="/tmp/test_output3"
 echo "" > $GITHUB_OUTPUT
 

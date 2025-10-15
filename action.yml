@@ -11,8 +11,14 @@ inputs:
   backend_config:
     description: 'Backend configuration as multiline key=value pairs'
     required: false
+  init_var_files:
+    description: 'Init variable files as multiline paths'
+    required: false
   init_vars:
     description: 'Init variables as multiline key=value pairs'
+    required: false
+  plan_var_files:
+    description: 'Plan variable files as multiline paths'
     required: false
   plan_vars:
     description: 'Plan variables as multiline key=value pairs'
@@ -48,7 +54,9 @@ runs:
       env:
         INPUT_MODULE_PATH: ${{ inputs.module_path }}
         INPUT_BACKEND_CONFIG: ${{ inputs.backend_config }}
+        INPUT_INIT_VAR_FILES: ${{ inputs.init_var_files }}
         INPUT_INIT_VARS: ${{ inputs.init_vars }}
+        INPUT_PLAN_VAR_FILES: ${{ inputs.plan_var_files }}
         INPUT_PLAN_VARS: ${{ inputs.plan_vars }}
         INPUT_APPLY: ${{ inputs.apply }}
         INPUT_DESTROY: ${{ inputs.destroy }}

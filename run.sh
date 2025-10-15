@@ -13,6 +13,13 @@ if [ -n "$INPUT_BACKEND_CONFIG" ]; then
     fi
   done <<< "$INPUT_BACKEND_CONFIG"
 fi
+if [ -n "$INPUT_INIT_VAR_FILES" ]; then
+  while IFS= read -r line; do
+    if [ -n "$line" ]; then
+      init_args+=("-var-file=$line")
+    fi
+  done <<< "$INPUT_INIT_VAR_FILES"
+fi
 if [ -n "$INPUT_INIT_VARS" ]; then
   while IFS= read -r line; do
     if [ -n "$line" ]; then
@@ -24,6 +31,13 @@ tofu "${init_args[@]}"
 
 # Plan
 plan_args=("plan" "-out=tfplan")
+if [ -n "$INPUT_INIT_VAR_FILES" ]; then
+  while IFS= read -r line; do
+    if [ -n "$line" ]; then
+      plan_args+=("-var-file=$line")
+    fi
+  done <<< "$INPUT_INIT_VAR_FILES"
+fi
 if [ -n "$INPUT_INIT_VARS" ]; then
   while IFS= read -r line; do
     if [ -n "$line" ]; then
@@ -31,10 +45,17 @@ if [ -n "$INPUT_INIT_VARS" ]; then
     fi
   done <<< "$INPUT_INIT_VARS"
 fi
+if [ -n "$INPUT_PLAN_VAR_FILES" ]; then
+  while IFS= read -r line; do
+    if [ -n "$line" ]; then
+      plan_args+=("-var-file=$line")
+    fi
+  done <<< "$INPUT_PLAN_VAR_FILES"
+fi
 if [ -n "$INPUT_PLAN_VARS" ]; then
   while IFS= read -r line; do
     if [ -n "$line" ]; then
-      plan_args+=("-$line")
+      plan_args+=("-var=$line")
     fi
   done <<< "$INPUT_PLAN_VARS"
 fi
