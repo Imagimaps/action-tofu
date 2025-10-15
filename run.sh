@@ -24,6 +24,13 @@ tofu "${init_args[@]}"
 
 # Plan
 plan_args=("plan" "-out=tfplan")
+if [ -n "$INPUT_INIT_VARS" ]; then
+  while IFS= read -r line; do
+    if [ -n "$line" ]; then
+      plan_args+=("-var=$line")
+    fi
+  done <<< "$INPUT_INIT_VARS"
+fi
 if [ -n "$INPUT_PLAN_INPUTS" ]; then
   while IFS= read -r line; do
     if [ -n "$line" ]; then
