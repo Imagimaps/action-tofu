@@ -11,6 +11,10 @@ inputs:
   backend_config:
     description: 'Backend configuration as multiline key=value pairs'
     required: false
+  upgrade:
+    description: 'Whether to upgrade modules and providers during init'
+    required: false
+    default: 'false'
   init_var_files:
     description: 'Init variable files as multiline paths'
     required: false
@@ -54,6 +58,7 @@ runs:
       env:
         INPUT_MODULE_PATH: ${{ inputs.module_path }}
         INPUT_BACKEND_CONFIG: ${{ inputs.backend_config }}
+        INPUT_UPGRADE: ${{ inputs.upgrade }}
         INPUT_INIT_VAR_FILES: ${{ inputs.init_var_files }}
         INPUT_INIT_VARS: ${{ inputs.init_vars }}
         INPUT_PLAN_VAR_FILES: ${{ inputs.plan_var_files }}

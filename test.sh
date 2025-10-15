@@ -10,6 +10,7 @@ tofu() {
 echo "Test 1: Basic init"
 export INPUT_MODULE_PATH="."
 export INPUT_BACKEND_CONFIG=""
+export INPUT_UPGRADE="false"
 export INPUT_INIT_VAR_FILES=""
 export INPUT_INIT_VARS=""
 export INPUT_PLAN_VAR_FILES=""
@@ -26,7 +27,7 @@ source ./run.sh
 echo -e "\nTest 2: Init with backend config"
 export INPUT_BACKEND_CONFIG="bucket=test-bucket
 key=test.tfstate"
-export INPUT_INIT_VARS="upgrade=true"
+export INPUT_UPGRADE="true"
 export GITHUB_OUTPUT="/tmp/test_output2"
 echo "" > $GITHUB_OUTPUT
 

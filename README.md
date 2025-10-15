@@ -14,8 +14,10 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
     backend_config: |
       bucket=my-bucket
       key=terraform.tfstate
+    upgrade: true
     init_vars: |
-      upgrade=true
+      backend_bucket=my-state-bucket
+      backend_region=us-east-1
     plan_vars: |
       environment=prod
       region=us-east-1
@@ -28,6 +30,7 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
 - `tofu_version`: OpenTofu version to use (default: 'latest')
 - `module_path`: Path to the OpenTofu module (required)
 - `backend_config`: Backend configuration as multiline key=value pairs
+- `upgrade`: Whether to upgrade modules and providers during init (default: false)
 - `init_var_files`: Init variable files as multiline paths
 - `init_vars`: Init variables as multiline key=value pairs  
 - `plan_var_files`: Plan variable files as multiline paths

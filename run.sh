@@ -6,6 +6,9 @@ cd "$INPUT_MODULE_PATH"
 
 # Initialize
 init_args=("init")
+if [ "$INPUT_UPGRADE" = "true" ]; then
+  init_args+=("-upgrade")
+fi
 if [ -n "$INPUT_BACKEND_CONFIG" ]; then
   while IFS= read -r line; do
     if [ -n "$line" ]; then
