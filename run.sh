@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Change to module directory
+cd "$INPUT_MODULE_PATH"
+
 # Initialize
 init_args=("init")
 if [ -n "$INPUT_BACKEND_CONFIG" ]; then

@@ -5,6 +5,9 @@ inputs:
     description: 'OpenTofu version to use'
     required: false
     default: 'latest'
+  module_path:
+    description: 'Path to the OpenTofu module'
+    required: true
   backend_config:
     description: 'Backend configuration as multiline key=value pairs'
     required: false
@@ -39,6 +42,7 @@ runs:
       shell: bash
       run: ${{ github.action_path }}/run.sh
       env:
+        INPUT_MODULE_PATH: ${{ inputs.module_path }}
         INPUT_BACKEND_CONFIG: ${{ inputs.backend_config }}
         INPUT_INIT_INPUTS: ${{ inputs.init_inputs }}
         INPUT_PLAN_INPUTS: ${{ inputs.plan_inputs }}

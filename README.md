@@ -10,6 +10,7 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
 - uses: Imagimaps/action-tofu@v1
   with:
     tofu_version: 'latest'
+    module_path: './infrastructure'
     backend_config: |
       bucket=my-bucket
       key=terraform.tfstate
@@ -24,6 +25,7 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
 ## Inputs
 
 - `tofu_version`: OpenTofu version to use (default: 'latest')
+- `module_path`: Path to the OpenTofu module (required)
 - `backend_config`: Backend configuration as multiline key=value pairs
 - `init_inputs`: Init inputs as multiline key=value pairs  
 - `plan_inputs`: Plan inputs as multiline key=value pairs

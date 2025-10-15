@@ -16,5 +16,6 @@ jobs:
       - name: Test action with minimal inputs
         uses: ./
         with:
+          module_path: './test-module'
           apply: false
           upload_plan: false
