@@ -35,3 +35,15 @@ A GitHub Action to plan and apply OpenTofu modules with configurable backend and
 ## Outputs
 
 - `plan_file`: Path to the generated plan file
+
+## Versioning
+
+This action uses automatic semantic versioning. Every push to main creates a new version:
+
+- Default: patch version (v1.0.1, v1.0.2, etc.)
+- `#minor` or `#feature` in commit message: minor version (v1.1.0)
+- `#major` or `#breaking` in commit message: major version (v2.0.0)
+
+Use specific versions in your workflows:
+- `Imagimaps/action-tofu@v1` (latest v1.x)
+- `Imagimaps/action-tofu@v1.0.1` (specific version)
