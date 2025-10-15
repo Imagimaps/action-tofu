@@ -77,4 +77,9 @@ if [ "$INPUT_DESTROY" = "true" ]; then
   tofu destroy -auto-approve
 fi
 
+# Upload plan if requested
+if [ "$INPUT_UPLOAD_PLAN" = "true" ]; then
+  echo "plan_file=tfplan" >> $GITHUB_OUTPUT
+fi
+
 echo "plan_file=tfplan" >> $GITHUB_OUTPUT
