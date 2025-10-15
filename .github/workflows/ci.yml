@@ -63,6 +63,15 @@ jobs:
           fetch-tags: true
       
       - name: Bump version and push tag
+        id: tag_version
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update major version tag
+        if: steps.tag_version.outputs.new_tag
+        run: |
+          NEW_TAG=${{ steps.tag_version.outputs.new_tag }}
+          MAJOR_VERSION=$(echo $NEW_TAG | cut -d. -f1)
+          git tag -f $MAJOR_VERSION
+          git push origin $MAJOR_VERSION --force
