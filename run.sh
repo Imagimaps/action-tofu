@@ -27,6 +27,7 @@ if [ -n "$INPUT_INIT_VARS" ]; then
     fi
   done <<< "$INPUT_INIT_VARS"
 fi
+echo "Running: tofu ${init_args[*]}"
 tofu "${init_args[@]}"
 
 # Plan
@@ -59,6 +60,7 @@ if [ -n "$INPUT_PLAN_VARS" ]; then
     fi
   done <<< "$INPUT_PLAN_VARS"
 fi
+echo "Running: tofu ${plan_args[*]}"
 tofu "${plan_args[@]}"
 
 # Upload plan
@@ -69,11 +71,13 @@ fi
 
 # Apply if requested
 if [ "$INPUT_APPLY" = "true" ]; then
+  echo "Running: tofu apply tfplan"
   tofu apply tfplan
 fi
 
 # Destroy if requested
 if [ "$INPUT_DESTROY" = "true" ]; then
+  echo "Running: tofu destroy -auto-approve"
   tofu destroy -auto-approve
 fi
 
