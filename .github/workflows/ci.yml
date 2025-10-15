@@ -3,6 +3,7 @@ name: CI
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
@@ -62,5 +63,3 @@ jobs:
       
       - name: Bump version and push tag
         uses: bitshifted/git-auto-semver@v2
-        with:
-          create_release: false
