@@ -13,12 +13,12 @@ if [ -n "$INPUT_BACKEND_CONFIG" ]; then
     fi
   done <<< "$INPUT_BACKEND_CONFIG"
 fi
-if [ -n "$INPUT_INIT_INPUTS" ]; then
+if [ -n "$INPUT_INIT_VARS" ]; then
   while IFS= read -r line; do
     if [ -n "$line" ]; then
-      init_args+=("-$line")
+      init_args+=("-var=$line")
     fi
-  done <<< "$INPUT_INIT_INPUTS"
+  done <<< "$INPUT_INIT_VARS"
 fi
 tofu "${init_args[@]}"
 

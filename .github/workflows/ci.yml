@@ -29,6 +29,16 @@ jobs:
           apply: false
           upload_plan: false
 
+      - name: Test action with variable backend
+        uses: ./
+        with:
+          module_path: './test-module/variable-backend'
+          init_vars: |
+            project=myapp
+            environment=staging
+          apply: false
+          upload_plan: false
+
   release:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: test
