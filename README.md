@@ -1,5 +1,7 @@
 # Action Tofu
 
+A GitHub Action to plan and apply OpenTofu modules with configurable backend and input parameters.
+
 ## Description
 
 A GitHub Action to plan and apply OpenTofu modules with configurable backend and input parameters.
