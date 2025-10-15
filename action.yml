@@ -14,8 +14,8 @@ inputs:
   init_vars:
     description: 'Init variables as multiline key=value pairs'
     required: false
-  plan_inputs:
-    description: 'Plan inputs as multiline key=value pairs'
+  plan_vars:
+    description: 'Plan variables as multiline key=value pairs'
     required: false
   apply:
     description: 'Whether to apply the plan'
@@ -49,7 +49,7 @@ runs:
         INPUT_MODULE_PATH: ${{ inputs.module_path }}
         INPUT_BACKEND_CONFIG: ${{ inputs.backend_config }}
         INPUT_INIT_VARS: ${{ inputs.init_vars }}
-        INPUT_PLAN_INPUTS: ${{ inputs.plan_inputs }}
+        INPUT_PLAN_VARS: ${{ inputs.plan_vars }}
         INPUT_APPLY: ${{ inputs.apply }}
         INPUT_DESTROY: ${{ inputs.destroy }}
         INPUT_UPLOAD_PLAN: ${{ inputs.upload_plan }}

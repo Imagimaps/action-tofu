@@ -31,12 +31,12 @@ if [ -n "$INPUT_INIT_VARS" ]; then
     fi
   done <<< "$INPUT_INIT_VARS"
 fi
-if [ -n "$INPUT_PLAN_INPUTS" ]; then
+if [ -n "$INPUT_PLAN_VARS" ]; then
   while IFS= read -r line; do
     if [ -n "$line" ]; then
       plan_args+=("-$line")
     fi
-  done <<< "$INPUT_PLAN_INPUTS"
+  done <<< "$INPUT_PLAN_VARS"
 fi
 tofu "${plan_args[@]}"
 
