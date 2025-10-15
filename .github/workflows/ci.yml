@@ -39,6 +39,17 @@ jobs:
           apply: false
           upload_plan: false
 
+      - name: Test action with variables
+        uses: ./
+        with:
+          module_path: './test-module/with-variables'
+          plan_var_files: |
+            common.tfvars
+          plan_vars: |
+            instance_count=2
+          apply: false
+          upload_plan: false
+
   release:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: test
