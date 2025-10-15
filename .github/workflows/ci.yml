@@ -60,8 +60,6 @@ jobs:
           fetch-depth: 0
       
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.70.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          DEFAULT_BUMP: patch
+        uses: bitshifted/git-auto-semver@v2
+        with:
+          create_release: false
