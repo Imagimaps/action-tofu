@@ -16,7 +16,16 @@ jobs:
       - name: Test action
         uses: ./
         with:
-          module_path: './test-module'
+          module_path: './test-module/basic'
+          apply: false
+          upload_plan: false
+
+      - name: Test action with backend
+        uses: ./
+        with:
+          module_path: './test-module/with-backend'
+          backend_config: |
+            path=custom-test.tfstate
           apply: false
           upload_plan: false
 
