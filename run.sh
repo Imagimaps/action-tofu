@@ -31,7 +31,7 @@ if [ -n "$INPUT_INIT_VARS" ]; then
   done <<< "$INPUT_INIT_VARS"
 fi
 echo "Running: tofu ${init_args[*]}"
-tofu "${init_args[@]}"
+stdbuf -oL tofu "${init_args[@]}"
 
 # Plan
 plan_args=("plan" "-out=tfplan")
@@ -64,7 +64,7 @@ if [ -n "$INPUT_PLAN_VARS" ]; then
   done <<< "$INPUT_PLAN_VARS"
 fi
 echo "Running: tofu ${plan_args[*]}"
-tofu "${plan_args[@]}"
+stdbuf -oL tofu "${plan_args[@]}"
 
 # Upload plan
 if [ "$INPUT_UPLOAD_PLAN" = "true" ]; then
@@ -75,13 +75,13 @@ fi
 # Apply if requested
 if [ "$INPUT_APPLY" = "true" ]; then
   echo "Running: tofu apply tfplan"
-  tofu apply tfplan
+  stdbuf -oL tofu apply tfplan
 fi
 
 # Destroy if requested
 if [ "$INPUT_DESTROY" = "true" ]; then
   echo "Running: tofu destroy -auto-approve"
-  tofu destroy -auto-approve
+  stdbuf -oL tofu destroy -auto-approve
 fi
 
 # Upload plan if requested

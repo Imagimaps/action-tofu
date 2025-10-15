@@ -1,7 +1,13 @@
 #!/bin/bash
 set -e
 
-# Mock tofu command for testing
+# Mock stdbuf and tofu commands for testing
+stdbuf() {
+  # Skip stdbuf flags and call our mock tofu
+  shift 2  # Remove -oL flags
+  tofu "$@"
+}
+
 tofu() {
   echo "tofu $*"
 }
