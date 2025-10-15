@@ -1,7 +1,46 @@
-name: ''
-description: ''
+name: 'OpenTofu Plan and Apply'
+description: 'Plan and apply OpenTofu modules with configurable inputs'
 inputs:
+  tofu_version:
+    description: 'OpenTofu version to use'
+    required: false
+    default: 'latest'
+  backend_config:
+    description: 'Backend configuration as multiline key=value pairs'
+    required: false
+  init_inputs:
+    description: 'Init inputs as multiline key=value pairs'
+    required: false
+  plan_inputs:
+    description: 'Plan inputs as multiline key=value pairs'
+    required: false
+  apply:
+    description: 'Whether to apply the plan'
+    required: false
+    default: 'false'
+  upload_plan:
+    description: 'Upload plan file to GitHub artifacts'
+    required: false
+    default: 'true'
 outputs:
+  plan_file:
+    description: 'Path to the generated plan file'
+    value: ${{ steps.plan.outputs.plan_file }}
 runs:
-  using: ''
-  main: ''
+  using: 'composite'
+  steps:
+    - name: Install OpenTofu
+      uses: opentofu/setup-opentofu@v1
+      with:
+        tofu_version: ${{ inputs.tofu_version }}
+    
+    - name: Run OpenTofu
+      id: plan
+      shell: bash
+      run: ${{ github.action_path }}/run.sh
+      env:
+        INPUT_BACKEND_CONFIG: ${{ inputs.backend_config }}
+        INPUT_INIT_INPUTS: ${{ inputs.init_inputs }}
+        INPUT_PLAN_INPUTS: ${{ inputs.plan_inputs }}
+        INPUT_APPLY: ${{ inputs.apply }}
+        INPUT_UPLOAD_PLAN: ${{ inputs.upload_plan }}
