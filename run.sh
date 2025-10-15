@@ -35,6 +35,9 @@ stdbuf -oL tofu "${init_args[@]}"
 
 # Plan
 plan_args=("plan" "-out=tfplan")
+if [ "$INPUT_DESTROY" = "true" ]; then
+  plan_args+=("-destroy")
+fi
 if [ -n "$INPUT_INIT_VAR_FILES" ]; then
   while IFS= read -r line; do
     if [ -n "$line" ]; then
@@ -72,16 +75,10 @@ if [ "$INPUT_UPLOAD_PLAN" = "true" ]; then
   # GitHub Actions automatically handles artifact upload via actions/upload-artifact
 fi
 
-# Apply if requested
-if [ "$INPUT_APPLY" = "true" ]; then
+# Apply if requested or if destroy is enabled
+if [ "$INPUT_APPLY" = "true" ] || [ "$INPUT_DESTROY" = "true" ]; then
   echo "Running: tofu apply tfplan"
   stdbuf -oL tofu apply tfplan
-fi
-
-# Destroy if requested
-if [ "$INPUT_DESTROY" = "true" ]; then
-  echo "Running: tofu destroy -auto-approve"
-  stdbuf -oL tofu destroy -auto-approve
 fi
 
 # Upload plan if requested
