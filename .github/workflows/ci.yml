@@ -41,6 +41,7 @@ jobs:
           upload_plan: false
 
       - name: Test action with variables
+        id: test
         uses: ./
         with:
           module_path: './test-module/with-variables'
@@ -63,3 +64,5 @@ jobs:
       
       - name: Bump version and push tag
         uses: bitshifted/git-auto-semver@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
